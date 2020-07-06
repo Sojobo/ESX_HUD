@@ -462,7 +462,8 @@ form {
   margin: 0 .53vh;
   padding: 0 1.07vh;
   color: #fff;
-  line-height: 4.27vh
+  line-height: 4.27vh;
+  cursor: pointer;
 }
 
 .popup .buttons .yes {

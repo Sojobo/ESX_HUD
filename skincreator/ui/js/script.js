@@ -1,5 +1,5 @@
 var CONFIG = {
-  "lang": "fr",
+  "lang": "en",
   "supportedLangs": ["fr", "en"]
 };
 
@@ -7,11 +7,11 @@ function localize(language) {
   if ($.inArray(language, CONFIG.supportedLangs) >= 0) {
     let lang = ':lang(' + language + ')';
     let hide = '[lang]:not(' + lang + ')';
-    document.querySelectorAll(hide).forEach(function(node) {
+    document.querySelectorAll(hide).forEach(function (node) {
       node.style.display = 'none';
     });
     let show = '[lang]' + lang;
-    document.querySelectorAll(show).forEach(function(node) {
+    document.querySelectorAll(show).forEach(function (node) {
       node.style.display = 'unset';
     });
   }
@@ -61,10 +61,10 @@ function update(save) {
   }))
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   localize(CONFIG.lang);
   // Listen for NUI Events
-  window.addEventListener('message', function(event) {
+  window.addEventListener('message', function (event) {
     // Open Skin Creator
     if (event.data.openSkinCreator == true) {
       $(".skinCreator").css("display", "block");
@@ -85,21 +85,21 @@ $(document).ready(function() {
   });
 
   // Form update
-  $('input').change(function() {
+  $('input').change(function () {
     update(false);
   });
-  $('.arrow').on('click', function(e) {
+  $('.arrow').on('click', function (e) {
     e.preventDefault();
     update(false);
   });
 
   // Form submited
-  $('.yes').on('click', function(e) {
+  $('.yes').on('click', function (e) {
     e.preventDefault();
     update(true);
   });
   // Rotate player
-  $(document).keypress(function(e) {
+  $(document).keypress(function (e) {
     if (e.which == 97) { // A pressed
       $.post('http://skincreator/rotaterightheading', JSON.stringify({
         value: 10
@@ -113,14 +113,14 @@ $(document).ready(function() {
   });
 
   // Zoom out camera for clothes
-  $('#tabs label').on('click', function(e) {
+  $('#tabs label').on('click', function (e) {
     //e.preventDefault();
     $.post('http://skincreator/zoom', JSON.stringify({
       zoom: $(this).attr('data-link')
     }));
   });
 
-  $('.oreilles li').on('click', function(e) {
+  $('.oreilles li').on('click', function (e) {
     $.post('http://skincreator/zoom', JSON.stringify({
       zoom: 'oreilles'
     }));
